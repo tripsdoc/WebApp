@@ -1,0 +1,76 @@
+<div id="check">
+  <div class="row">
+    <div class="large-8 medium-8 small-12 small-centered large-centered medium-centered columns">
+      <p id="text-search" class="help text-center">Check container status by entering the 7-digit Container Number</p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="large-5 medium-6 small-12 small-centered large-centered medium-centered columns">
+      <ul class="tabs" data-tabs id="example-tabs">
+        <li class="tabs-title is-active" style="width: 50%;"><a href="#panel1" aria-selected="true">Container</a></li>
+        <li class="tabs-title" style="width: 50%;"><a data-tabs-target="panel2" href="#panel2">HBL</a></li>
+      </ul>
+      <div class="tabs-content" data-tabs-content="example-tabs">
+        <div class="tabs-panel is-active" id="panel1">
+          
+          <div class="callout secondary">
+            <div class="row"> 
+              <!--
+              <div class="large-12 medium-12 small-12 small-centered large-centered medium-centered columns">
+                <input type="text" placeholder="Container Number" />
+              </div>
+              <div class="large-12 medium-12 small-12 small-centered large-centered medium-centered columns text-center">
+                <a href="#" id="button-check" class="small radius button button-check">Check</a>
+              </div>
+              -->
+              <%= form_tag( { controller: "containers", action: "search" } , :method => "post", id: "search-form", remote: true) do %>
+                <div class="large-12 medium-12 small-12 small-centered large-centered medium-centered columns">
+                  <%= text_field_tag :container_number, params[:container_number], placeholder: "Container Number" %>
+                </div>
+                <div class="large-12 medium-12 small-12 small-centered large-centered medium-centered columns text-center">
+                  <%= submit_tag "Check", { class: "small radius button button-check", id: "button-check" } %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+        <div class="tabs-panel" id="panel2">
+          
+          <div class="callout secondary">
+            <div class="row"> 
+              <!--
+              <div class="large-12 medium-12 small-12 small-centered large-centered medium-centered columns">
+                <input type="text" placeholder="Container Number" />
+              </div>
+              <div class="large-12 medium-12 small-12 small-centered large-centered medium-centered columns text-center">
+                <a href="#" id="button-check" class="small radius button button-check">Check</a>
+              </div>
+              -->
+              <%= form_tag( { controller: "containers", action: "search_hbl" } , :method => "post", id: "search-form", remote: true) do %>
+                <div class="large-12 medium-12 small-12 small-centered large-centered medium-centered columns">
+                  <%= text_field_tag :hbl_number, params[:hbl_number], placeholder: "HBL" %>
+                </div>
+                <div class="large-12 medium-12 small-12 small-centered large-centered medium-centered columns text-center">
+                  <%= submit_tag "Check", { class: "small radius button button-check", id: "button-check" } %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="large-5 medium-6 small-12 small-centered large-centered medium-centered columns">
+      
+    </div>
+  </div>
+</div>
+
+<div id="check-result" style="display: none;"></div>

@@ -1,0 +1,52 @@
+<div id="loading-container">
+  <div id="loading-box">Loading ...</div>    
+</div>
+
+<div id="myModal" class="reveal small text-center" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  <div id="myModalData"></div>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<script>
+  $(document).foundation();
+
+  $(document).ready(function() {
+    /*$('#button-check').click(function() {
+      $('#check').hide();
+      $('#check-result').fadeIn();
+    });*/
+
+    var $loading = $('#loading-box');
+    $(document)
+    .ajaxStart(function () {
+      $loading.show();
+    })
+    .ajaxStop(function () {
+      $loading.hide();
+    });
+
+    $('div#check-result').on('click', 'a.button-back', function(e) {
+      e.preventDefault();
+
+      $('#check-result').html("");
+      $('#check-result').hide();
+      $('#check').fadeIn();
+    });
+
+    $('#example-tabs').on('change.zf.tabs', function() {
+
+      if($('#panel1:visible').length){
+        document.getElementById("text-search").innerHTML = "Check container status by entering the 7-digit Container Number";
+        console.log('Tab 1 is now visible!');
+      }
+      if($('#panel2:visible').length){
+        document.getElementById("text-search").innerHTML = "Input HBL as show on your delivery order";
+        console.log('Tab 2 is now visible!');
+      }
+
+    });
+
+  });
+</script>

@@ -1,0 +1,94 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto:400,500');
+
+* { font-family: 'Roboto', sans-serif; }
+#logo { margin: 50px auto 10px auto; background-image: url( asset-path('global/logo.png') ); background-repeat: no-repeat; background-size: contain; height: 100px; width: 200px;  }
+.company-name { text-align: center; color: #444; padding-bottom: 20px; font-size: 24px; font-weight: 500; }
+.help { color: #666; }
+.contact-number-help { color: #666; font-size: 13px; margin-bottom: 5px; }
+.button-update { margin-bottom: 0; }
+.button-check { margin-bottom: 0; }
+.footer { font-size: 12px; color: #999; text-align: center; }
+
+#check-result label { font-size: 16px; padding: 5px 0; }
+
+#qrCodeCLS {
+    margin: 0px auto 10px auto;
+    background-image: url(asset-path('global/cls.jpeg'));
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 128px;
+    width: 128px;
+}
+
+#qrCode {
+    margin: 0px auto 10px auto;
+    background-image: url(asset-path('global/hsc.jpeg'));
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 128px;
+    width: 128px;
+}
+
+#loading-container { display:block; position: absolute; top: 1%; width: 100%; 
+	#loading-box {
+	  display: none;
+	  max-width: 150px;
+	  margin: 0 auto;
+	  background-color: #000;
+	  opacity: 0.5;
+	  color: #fff;
+	  padding: 5px 20px;
+	  font-size: 16px;
+	  text-align: center;
+	  border: 2px solid #a1a1a1;
+	  border-radius: 25px;
+	}
+}
+
+.qr_header {
+    text-align: center;
+	color: #444;
+	margin-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.bank-text { color: #666; font-size: 15px; margin-bottom: 5px; }
+
+.vertical-center {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+  }
+
+.price_header {
+    text-align: center;
+    color: #444;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.price_message { 
+	font-size: 12px; 
+	color: #999; 
+	text-align: center; 
+	padding-bottom: 10px;
+}
+
+.error-container {
+	list-style: none;
+
+	li {
+		color: red;
+	}
+}
+
+@media only screen and (max-width: 40em) {
+	/* line 158, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
+	dialog, .reveal-modal {
+		min-height: 20vh !important;
+	}
+}

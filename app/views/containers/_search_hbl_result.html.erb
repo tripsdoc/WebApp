@@ -1,0 +1,175 @@
+<% if @hbl %>
+
+<div class="row">
+  <div class="large-8 medium-12 small-12 small-centered large-centered medium-centered columns">
+    <div class="callout secondary">
+      <div class="row">
+        <div class="large-6 medium-6 small-6 columns">
+          <label>Container Number : </label>
+        </div>
+        <div class="large-6 medium-6 small-6 columns">
+          <label><%=@container.container_prefix%> <%=@container.container_number%></label>
+        </div>
+      </div>
+
+      <% unless @date_arr['last_day'].blank? %>
+      <div class="row">
+        <div class="large-6 medium-6 small-6 columns">
+          <label>Last Day : </label>
+        </div>
+        <div class="large-6 medium-6 small-6 columns">
+          <label><%=@date_arr['last_day']%></label>
+        </div>
+      </div>
+      <% end %>
+
+      <div class="row">
+        <div class="large-6 medium-6 small-6 columns">
+          <label>HBL : </label>
+        </div>
+        <div class="large-6 medium-6 small-6 columns">
+          <label><%=@hbl.hbl_uid%></label>
+        </div>
+      </div>
+
+      <% unless @date_arr['mweight'].blank? && @volume.blank? %>
+      <div class="row">
+        <div class="large-6 medium-6 small-6 columns">
+          <label>Quantity / Weight / Volume : </label>
+        </div>
+        <div class="large-6 medium-6 small-6 columns">
+          <label><%=@quantity%> / <%=number_with_delimiter(@weight)%> Kg / <%=@volume.round(2)%> m&sup3;</label>
+        </div>
+      </div>
+      <% end %>
+
+      <table class="hover">
+        <thead style="display: block">
+          <tr>
+            <th width="180">Marking</th>
+            <th width="100">Qty</th>
+            <th width="150">Type</th>
+            <th width="150">L x B x H</th>
+            <th width="120">Remarks</th>
+          </tr>
+        </thead>
+        <tbody style="max-height: 400px; overflow-y: scroll; display: block;">
+        <% @hbls.each_with_index do |data, index| %>
+          <tr>
+          <td width="180"><%=data.markings%></td>
+          <td width="100"><%=data.mquantity%></td>
+          <td width="150"><%=data.mtype%></td>
+          <td width="150"><%=data.length%> x <%=data.breadth%> x <%=data.height%></td>
+          <td width="120"><%=data.remarks%></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<% unless @date_arr['totalAmount'].blank? %>
+<div class="row">
+  <div class="large-12 medium-12 small-12 columns">
+    <div class="price_header">Indicative standard charges : <%=@date_arr['totalAmount']%></div>
+    <div class="price_message">*not inclusive of additional charges like store rent, long-length, heavylift, dg, etc.</div>
+    <div class="qr_header">Pay with PayNow</div>
+    <% if @date_arr['isCls'] %>
+      <div id="qrCodeCLS"></div>
+      <div class="qr_header">Pay with Bank Transfer</div>
+      <div style="margin:auto;width:400px;">
+        <span style="width:140px;float:left;">Company Name</span>
+        <span style="width:20px;float:center;">:</span>
+        <span>Capital Logistics Services Pte Ltd</span>
+      </div>
+      <div style="margin:auto;width:400px;">
+        <span style="width:140px;float:left;">UEN No</span>
+        <span style="width:20px;float:center;">:</span>
+        <span>201008704Z</span>
+      </div>
+      <div style="margin:auto;width:400px;">
+        <span style="width:140px;float:left;">Account No</span>
+        <span style="width:20px;float:center;">:</span>
+        <span>0129010847</span>
+      </div>
+      <div style="margin:auto;width:400px;">
+        <span style="width:140px;float:left;">Bank Name</span>
+        <span style="width:20px;float:center;">:</span>
+        <span>DBS Bank Ltd</span>
+      </div>
+      <div style="margin:auto;width:400px;">
+        <span style="width:140px;float:left;">Swift Code</span>
+        <span style="width:20px;float:center;">:</span>
+        <span>DBSSSGSGXXX</span>
+      </div>
+    <% else %>
+      <div id="qrCode"></div>
+      <div class="qr_header">Pay with Bank Transfer</div>
+      <div style="margin:auto;width:400px;">
+        <span style="width:140px;float:left;">Company Name</span>
+        <span style="width:20px;float:center;">:</span>
+        <span>Hup Soon Cheong Services Pte Ltd</span>
+      </div>
+      <div style="margin:auto;width:400px;">
+        <span style="width:140px;float:left;">UEN No</span>
+        <span style="width:20px;float:center;">:</span>
+        <span>199200670G</span>
+      </div>
+      <div style="margin:auto;width:400px;">
+        <span style="width:140px;float:left;">Account No</span>
+        <span style="width:20px;float:center;">:</span>
+        <span>0120137591</span>
+      </div>
+      <div style="margin:auto;width:400px;">
+        <span style="width:140px;float:left;">Bank Name</span>
+        <span style="width:20px;float:center;">:</span>
+        <span>DBS Bank Ltd</span>
+      </div>
+      <div style="margin:auto;width:400px;">
+        <span style="width:140px;float:left;">Swift Code</span>
+        <span style="width:20px;float:center;">:</span>
+        <span>DBSSSGSGXXX</span>
+      </div>
+    <% end %>
+    <div class="qr_header">Indicate HBL Number in Comments for easy tracing</div>
+  </div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="large-8 medium-8 small-12 small-centered large-centered medium-centered columns">
+    <p class="contact-number-help text-center">Provide us with your mobile number so that we could update you<br /> on the status of container number <%=@container.container_number%> via SMS</p>
+  </div>
+
+  <%= form_for(@notification, remote: true) do |f| %>
+
+    <div class="large-3 medium-4 small-6 small-centered large-centered medium-centered columns">
+      <%= hidden_field_tag :container_id, @container.id %>
+      <%= f.text_field :contact_number, { class: 'form-control', placeholder: 'Contact Number' } %>
+    </div>
+
+    <div class="large-5 medium-6 small-12 small-centered large-centered medium-centered columns text-center">
+      <!--<a href="#" class="small radius button primary button-update">Update Me</a>-->
+      <%= submit_tag "Update Me", { class: "small radius button primary button-update" } %>
+      <a href="#" class="small radius button secondary button-back">Back</a>
+    </div>
+  <% end %>
+
+</div>	
+
+<% elsif %>
+
+	<div class="row">
+		<div class="large-8 medium-8 small-12 small-centered large-centered medium-centered columns">
+		  <div class="alert-box radius text-center">Sorry invalid HBL, please try again!.</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-5 medium-6 small-12 small-centered large-centered medium-centered columns text-center">
+		  <a href="#" class="small radius button secondary button-back">Back</a>
+		</div>
+	</div>
+
+<% end %>

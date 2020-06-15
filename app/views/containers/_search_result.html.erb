@@ -1,0 +1,152 @@
+<% if @container %>
+
+<div class="row">
+  <div class="large-6 medium-8 small-12 small-centered large-centered medium-centered columns">
+    <div class="callout secondary">
+      <div class="row">
+        <div class="large-6 medium-6 small-6 columns">
+          <label>Container Number:</label>
+        </div>
+        <div class="large-6 medium-6 small-6 columns">
+          <label><%=@container.container_prefix%> <%=@container.container_number%></label>
+        </div>
+      </div>
+
+      <% unless @date_arr['eta'].blank? %>
+      <div class="row">
+        <div class="large-6 medium-6 small-6 columns">
+          <label>Estimated Time Arrival:</label>
+        </div>
+        <div class="large-6 medium-6 small-6 columns">
+          <label><%=@date_arr['eta']%></label>
+        </div>
+      </div>
+      <% end %>
+
+      <% unless @date_arr['cod'].blank? %>
+      <div class="row">
+        <div class="large-6 medium-6 small-6 columns">
+          <label>Completion of Discharge:</label>
+        </div>
+        <div class="large-6 medium-6 small-6 columns">
+          <label><%=@date_arr['cod']%></label>
+        </div>
+      </div>
+      <% end %>
+
+      <% unless @date_arr['schedule_date'].blank? %>
+        <div class="row">
+          <div class="large-6 medium-6 small-6 columns">
+            <label>Schedule Date:</label>
+          </div>
+          <div class="large-6 medium-6 small-6 columns">
+            <label><%=@date_arr['schedule_date']%></label>
+          </div>
+        </div>
+      <% end %>
+
+      <% unless @date_arr['f5_unstuff_date'].blank? %>
+        <div class="row">
+          <div class="large-6 medium-6 small-6 columns">
+            <label>J5 Unstuff Date:</label>
+          </div>
+          <div class="large-6 medium-6 small-6 columns">
+            <label><%=@date_arr['f5_unstuff_date']%></label>
+          </div>
+        </div>
+      <% end %>
+
+      <% unless @date_arr['f5_last_day'].blank? %>
+      <div class="row">
+        <div class="large-6 medium-6 small-6 columns">
+          <label>J5 Last Day:</label>
+        </div>
+        <div class="large-6 medium-6 small-6 columns">
+          <label><%=@date_arr['f5_last_day']%></label>
+        </div>
+      </div>
+      <% end %>
+
+      <% unless @date_arr['unstuff_date_msg'].blank? %>
+        <div class="row">
+          <div class="large-6 medium-6 small-6 columns">
+            <label>Unstuff Date Message:</label>
+          </div>
+          <div class="large-6 medium-6 small-6 columns">
+            <label><%=@date_arr['unstuff_date_msg']%></label>
+          </div>
+        </div>
+      <% end %>
+
+      <% unless @date_arr['unstuff_date'].blank? %>
+        <div class="row">
+          <div class="large-6 medium-6 small-6 columns">
+            <label>Unstuff Date:</label>
+          </div>
+          <div class="large-6 medium-6 small-6 columns">
+            <label><%=@date_arr['unstuff_date']%></label>
+          </div>
+        </div>
+      <% end %>
+
+      <% unless @date_arr['last_day'].blank? %>
+        <div class="row">
+          <div class="large-6 medium-6 small-6 columns">
+            <label>Last Day:</label>
+          </div>
+          <div class="large-6 medium-6 small-6 columns">
+            <label><%=@date_arr['last_day']%></label>
+          </div>
+        </div>
+      <% end %>
+      
+      <% unless @date_arr['location'].blank? %>
+        <div class="row">
+          <div class="large-6 medium-6 small-6 columns">
+            <label>Location:</label>
+          </div>
+          <div class="large-6 medium-6 small-6 columns">
+            <label><%=@container.location%></label>
+          </div>
+        </div>   
+      <% end %> 
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-8 medium-8 small-12 small-centered large-centered medium-centered columns">
+    <p class="contact-number-help text-center">Provide us with your mobile number so that we could update you<br /> on the status of container number <%=@container.container_number%> via SMS</p>
+  </div>
+
+  <%= form_for(@notification, remote: true) do |f| %>
+
+    <div class="large-3 medium-4 small-6 small-centered large-centered medium-centered columns">
+      <%= hidden_field_tag :container_id, @container.id %>
+      <%= f.text_field :contact_number, { class: 'form-control', placeholder: 'Contact Number' } %>
+    </div>
+
+    <div class="large-5 medium-6 small-12 small-centered large-centered medium-centered columns text-center">
+      <!--<a href="#" class="small radius button primary button-update">Update Me</a>-->
+      <%= submit_tag "Update Me", { class: "small radius button primary button-update" } %>
+      <a href="#" class="small radius button secondary button-back">Back</a>
+    </div>
+  <% end %>
+
+</div>	
+
+<% elsif %>
+
+	<div class="row">
+		<div class="large-8 medium-8 small-12 small-centered large-centered medium-centered columns">
+		  <div class="alert-box radius text-center">Sorry, we cannot find containing number <%=@search_values[:container_number]%>.<br />We have yet to receive any updates for this container or you may have entered an invalid number.</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-5 medium-6 small-12 small-centered large-centered medium-centered columns text-center">
+		  <a href="#" class="small radius button secondary button-back">Back</a>
+		</div>
+	</div>
+
+<% end %>

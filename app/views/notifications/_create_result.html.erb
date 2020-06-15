@@ -1,0 +1,23 @@
+<% 
+object = @notification
+
+unless object.errors.any? 
+  unless @container.blank?
+%>
+  We will update you once we receive more updates on the status of container number <%=@container.container_number%>
+<% 
+  end 
+  unless @hbl.blank?
+%>
+  We will update you once we receive more updates on the status of hbl <%=@hbl.hbl_uid%>
+<% 
+  end 
+  else 
+%>
+  The form contains <%= pluralize(object.errors.count, "error") %>.
+  <ul class="error-container">
+  <% object.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>   
+<% end %>
